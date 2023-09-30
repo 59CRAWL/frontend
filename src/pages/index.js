@@ -11,8 +11,6 @@ import Sidebar from '@components/Sidebar/Sidebar';
 import Charts from '../components/Charts/Charts';
                 
 import RoutingMachine from '../components/Routing/RoutingMachine';
-import { useContext } from 'react';
-import { Message_data } from 'src/context/shipContext';
 
 const DEFAULT_CENTER = [1.262822, 103.786229]
 

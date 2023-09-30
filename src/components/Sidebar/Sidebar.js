@@ -5,6 +5,7 @@ import Ship from '@components/ships';
 import { Message_data } from 'src/context/shipContext';
 
 const Sidebar = () => {
+  console.log('build sidebar')
   const { message, setMessage } = useContext(Message_data);
   const [file,setFile] = useState()
   // handleFileChange = (e) => {
