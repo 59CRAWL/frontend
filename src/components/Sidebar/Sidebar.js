@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './Sidebar.module.css'; // Import the CSS file
+import axios from 'axios';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class Sidebar extends Component {
     if (selectedFile) {
       // You can perform further actions with the selected file here.
       console.log('Selected file:', selectedFile);
+      //axios.post("api/uploadfile", selectedFile);
     } else {
       alert('Please select a file before submitting.');
     }
