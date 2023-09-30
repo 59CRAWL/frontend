@@ -11,7 +11,7 @@ import Sidebar from '@components/Sidebar/Sidebar';
 import Navbar from '../components/Navbar';
 import Charts from '../components/Charts/Charts';
                 
-import RoutingMachine from './Routing/RoutingMachine';
+import RoutingMachine from '../components/Routing/RoutingMachine';
 
 const DEFAULT_CENTER = [1.262822, 103.786229]
 

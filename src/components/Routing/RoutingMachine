@@ -1,0 +1,7 @@
+import dynamic from 'next/dynamic';
+
+const DynamicRoute = dynamic(() => import('./DynamicRouting'), {
+  ssr: false
+});
+
+export default DynamicRoute

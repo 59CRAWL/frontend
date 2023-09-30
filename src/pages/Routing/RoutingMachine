@@ -1,8 +1,0 @@
-import dynamic from 'next/dynamic';
-import RoutingMachine from './DynamicRouting';
-
-const DynamicMap = dynamic(() => import('./DynamicRouting'), {
-  ssr: false
-});
-
-export default RoutingMachine
