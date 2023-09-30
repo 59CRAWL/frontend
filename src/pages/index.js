@@ -9,16 +9,16 @@ import Button from '@components/Button';
 import styles from '@styles/Home.module.scss';
 import Sidebar from '@components/Sidebar/Sidebar';
 import Navbar from '../components/Navbar';
-import Charts from '../components/Charts';
+import Charts from '../components/Charts/Charts';
 
-const DEFAULT_CENTER = [38.907132, -77.036546]
+const DEFAULT_CENTER = [1.357822, 103.813229]
 
 export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Next.js Leaflet Starter</title>
-        <meta name="description" content="Create mapping apps with Next.js Leaflet Starter" />
+        <title>059CRAWL</title>
+        <meta name="description" content="PSA Codesprint 2023" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -26,13 +26,8 @@ export default function Home() {
         <Sidebar/>
         
         <Container>
-          <h1 className={styles.title}>
-            Next.js Leaflet Starter
-          </h1>
-          <Navbar/>
-          <Charts/>
 
-          <Map className={styles.homeMap} width="800" height="400" center={DEFAULT_CENTER} zoom={12}>
+          <Map className={styles.homeMap} width="500" height="200" center={DEFAULT_CENTER} zoom={12}>
             {({ TileLayer, Marker, Popup }) => (
               <>
                 <TileLayer
@@ -47,13 +42,7 @@ export default function Home() {
               </>
             )}
           </Map>
-          <p className={styles.description}>
-            <code className={styles.code}>npx create-next-app -e https://github.com/colbyfayock/next-leaflet-starter</code>
-          </p>
-
-          <p className={styles.view}>
-            <Button href="https://github.com/colbyfayock/next-leaflet-starter">Vew on GitHub</Button>
-          </p>
+          <Charts/>
         </Container>
       </Section>
     </Layout>

@@ -29,7 +29,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className={styles.sidebar}>
-        <h2>File Upload</h2>
+        <h2>CSV Upload</h2>
         <form onSubmit={this.handleSubmit}>
           <div className={styles.formgroup}>
             <label htmlFor="fileInput">Select a File:</label>
