@@ -7,7 +7,7 @@ import Map from '@components/Map';
 import Button from '@components/Button';
 
 import styles from '@styles/Home.module.scss';
-import Sidebar from '../components/Sidebar copy';
+import Sidebar from '@components/Sidebar/Sidebar';
 import Navbar from '../components/Navbar';
 import Charts from '../components/Charts';
 

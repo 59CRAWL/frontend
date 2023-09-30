@@ -18,13 +18,20 @@
     "url": "https://github.com/colbyfayock/next-leaflet-starter/issues"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.1.0",
+    "@mantine/core": "^7.1.0",
+    "@mantine/form": "^7.1.0",
+    "@mantine/hooks": "^7.1.0",
+    "chart.js": "^4.4.0",
     "copy-webpack-plugin": "^11.0.0",
     "leaflet": "^1.9.4",
     "next": "^13.4.19",
     "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.16.0",
     "sass": "^1.66.1"
   }
 }
