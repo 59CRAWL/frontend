@@ -910,3 +910,7 @@ button[type="submit"] {
     background-color: rgb(55 65 81 / var(--tw-bg-opacity));
   }
 }
+
+.leaflet-routing-alternatives-container {
+  display: none;
+}

@@ -1,12 +1,19 @@
 import L from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
-import Ship from '../../assets/cargo-ship.png';
+import icon from '../../assets/cargo-ship.png';
 //import "./JourneyRoute.css";
+import Ship from "@components/ships";
+import { useContext } from "react";
+import { Message_data } from "src/context/shipContext";
+
+var coords = [L.latLng(1.255822, 103.788229),
+L.latLng(1.269822, 103.780229)]
+
 
 const CreateRoutineMachineLayer = () => {
     let shipIcon = new L.Icon({
-        iconUrl: Ship,
+        iconUrl: icon,
         iconSize: [25, 50],
         iconAnchor: [-16, 20],
     });
@@ -16,11 +23,11 @@ const CreateRoutineMachineLayer = () => {
       }
 
     const instance = L.Routing.control({ 
-        waypoints: [
+        waypoints: coords
             // Previous properly aligned way points
-            L.latLng(1.0703, 104.2192),
-            L.latLng(0.9885398340769811,103.85805624764262),
-            L.latLng(1.0703, 103.7567)
+            // L.latLng(1.0703, 104.2192),
+            // L.latLng(0.9885398340769811,103.85805624764262),
+            // L.latLng(1.0703, 103.7567)
             //New way points
             // L.latLng(1.2230, 103.8542),
             // L.latLng(1.240111, 103.830933),
@@ -29,8 +36,9 @@ const CreateRoutineMachineLayer = () => {
             // L.latLng(1.2875422104568421, 103.66667134765369),
             // L.latLng(1.247449, 103.596),
             // L.latLng(1.2160194097204378, 103.64611489779371),
-        ],
+        ,
         createMarker: function (i, wp, nWps) {
+
             if (i === 0) {
                 return L.circleMarker(wp.latLng,{fillColor: "blue",color: "blue",fillOpacity: 1}).bindTooltip("Journey Starting Point",{permanent: true,direction: "right",...TooltipClass})
             } else if (i === 1) {
