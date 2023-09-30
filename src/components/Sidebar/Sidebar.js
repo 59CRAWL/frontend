@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import styles from './Sidebar.module.scss'; // Import the SCSS file
+import styles from './Sidebar.module.css'; // Import the CSS file
 
 class Sidebar extends Component {
   constructor(props) {
@@ -9,7 +9,6 @@ class Sidebar extends Component {
     };
   }
 
-  
   handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     this.setState({ selectedFile });
@@ -28,12 +27,11 @@ class Sidebar extends Component {
   };
 
   render() {
-
     return (
-      <div className="sidebar">
+      <div className={styles.sidebar}>
         <h2>File Upload</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
+          <div className={styles.formgroup}>
             <label htmlFor="fileInput">Select a File:</label>
             <input
               type="file"
@@ -42,7 +40,7 @@ class Sidebar extends Component {
               onChange={this.handleFileChange}
             />
           </div>
-          <div className="form-group">
+          <div className={styles.formgroup}>
             <button type="submit">Submit</button>
           </div>
         </form>
