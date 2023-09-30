@@ -1,7 +1,15 @@
 import dynamic from 'next/dynamic';
 
 const DynamicRoute = dynamic(() => import('./DynamicRouting'), {
-  ssr: false
+  ssr: false,
 });
+
+// const RoutingMachine =(props)=> {
+//   return (
+//     <div>
+//       <DynamicRoute {...props}></DynamicRoute>
+//     </div>
+//   )
+// }
 
 export default DynamicRoute

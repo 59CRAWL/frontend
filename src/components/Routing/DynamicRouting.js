@@ -21,7 +21,6 @@ const CreateRoutineMachineLayer = () => {
     var TooltipClass = {
         'className': 'class-tooltip'
       }
-
     const instance = L.Routing.control({ 
         waypoints: coords
             // Previous properly aligned way points

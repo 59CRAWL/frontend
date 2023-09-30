@@ -1,33 +1,27 @@
-import React, { Component, useContext } from 'react';
+import React, { Component, useContext, useState } from 'react';
 import styles from './Sidebar.module.css'; // Import the CSS file
 import axios from 'axios';
 import Ship from '@components/ships';
 import { Message_data } from 'src/context/shipContext';
 
-class Sidebar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedFile: null,
-    };
+const Sidebar = () => {
+  const { message, setMessage } = useContext(Message_data);
+  const [file,setFile] = useState()
+  // handleFileChange = (e) => {
+  //   selectedFile = e.target.files[0];
+  // };
 
-  }
-
-  handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    this.setState({ selectedFile });
-  };
-
-  handleSubmit = (e) => {
+  function handleSubmit (e) {
+    // console.log(e)
     e.preventDefault();
-    const { selectedFile } = this.state;
+    // const { selectedFile } = this.state;
     //var shipsarray = useContext(shipsContext);
 
-    if (selectedFile) {
+    if (file) {
       // You can perform further actions with the selected file here.
       var newFormData = new FormData();
-      newFormData.append('file', selectedFile)
-      console.log('Selected file:', selectedFile);
+      newFormData.append('file', file)
+      // console.log('Selected file:', selectedFile);
       axios.post("http://127.0.0.1:5000/ingestor", newFormData).then(
         (response) => {
           
@@ -43,6 +37,7 @@ class Sidebar extends Component {
           
           
           setMessage(shipsarray);
+          console.log(shipsarray)
 
           }
         )
@@ -52,18 +47,18 @@ class Sidebar extends Component {
     }
   };
 
-  render() {
+  // render() {
     return (
       <div className={styles.sidebar}>
         <h2>CSV Upload</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className={styles.formgroup}>
             <label htmlFor="fileInput">Select a File:</label>
             <input
               type="file"
               id="fileInput"
               accept=".jpg, .jpeg, .png, .pdf" // Specify the allowed file types
-              onChange={this.handleFileChange}
+              onChange={(e)=> setFile(e.target.files?.[0])}
             />
           </div>
           <div className={styles.formgroup}>
@@ -73,6 +68,6 @@ class Sidebar extends Component {
       </div>
     );
   }
-}
+// }
 
 export default Sidebar;
