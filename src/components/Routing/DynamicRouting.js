@@ -3,15 +3,14 @@ import { createControlComponent } from "@react-leaflet/core";
 import "leaflet-routing-machine";
 import icon from '../../assets/cargo-ship.png';
 //import "./JourneyRoute.css";
-import Ship from "@components/ships";
+import Ship from "src/class/ships";
 import { useContext } from "react";
-import { Message_data } from "src/context/shipContext";
+import { ShipContext } from "src/context/shipContext";
 
 var coords = [L.latLng(1.255822, 103.788229),
 L.latLng(1.269822, 103.780229)]
 
-
-const CreateRoutineMachineLayer = () => {
+const CreateRoutineMachineLayer = (props) => {
     let shipIcon = new L.Icon({
         iconUrl: icon,
         iconSize: [25, 50],

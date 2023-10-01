@@ -8,8 +8,6 @@ import styles from './Map.module.scss';
 const { MapContainer } = ReactLeaflet;
 
 const Map = ({ children, className, width, height, ...rest }) => {
-  
-
   let mapClassName = styles.map;
 
   if ( className ) {
