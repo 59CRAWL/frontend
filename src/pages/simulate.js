@@ -38,34 +38,52 @@ const SPAWN_LOCATIONS = [
 
 var counter = 1;
 
+var removedShips = []
+
 export default function Simulate() {
   const { message } = useContext(ShipContext)
 
   const [shipsShowing, setShipsShowing] = useState(message? [message[0]]: [])
-  
 
-  console.log(message)
+  
 
   function nextShip() {
     if (!message) {
       console.log('no ships');
       return;
     }
-    console.log(shipsShowing);
+    // console.log(shipsShowing);
     var newShipsShowing = [...shipsShowing]
     const index = newShipsShowing.findIndex((ship) => message[counter].berth == ship.berth)
-    console.log(index)
-    console.log(message[counter].vesselName)
+    // console.log(index)
+    // console.log(message[counter].vesselName)
     if (index == -1) {
       newShipsShowing.push(message[counter]);
     } else {
+      removedShips.push({index: index, ship: newShipsShowing[index]})
       newShipsShowing[index] = message[counter]
     }
     counter += 1;
     setShipsShowing(newShipsShowing);
-    
+    console.log(message)
+    console.log(shipsShowing)
+    console.log(removedShips)
     console.log('updated array')
   }
+
+  // function previousShip() {
+  //   if (!message) {
+  //     console.log('no ships');
+  //     return;
+  //   }
+  //   console.log(counter);
+  //   if (removedShips[-1].index)
+  //   if (shipsShowing.length == counter) {
+  //     console.log('remove ship');
+  //   } else {
+  //     console.log('replace with previous ship')
+  //   }
+  // }
 
   return (
     <Layout className={styles.layout}>
@@ -98,8 +116,16 @@ export default function Simulate() {
           )
         }
       </Map>
+      
+      <div className={styles.bottomContainer}>
+        <div className={styles.leftButtons}>
+          {/* <button className={styles.simulateButton} onClick={previousShip}> Previous ship</button> */}
+          <button className={styles.simulateButton} onClick={nextShip}> Next ship</button>
+          <h3>ETA: {message? message[counter-1].eta: null}</h3>
+        </div>
+      </div>
 
-      <button className={styles.next_button} onClick={nextShip}> Next ship</button>
+      
 
     </Layout>
   )

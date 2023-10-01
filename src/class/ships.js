@@ -41,7 +41,7 @@ class Ship {
         return new Ship(
             input["Voyage"],
             input["As Scheduled"],
-            input["Berth"],
+            input["Berth"] + 1,
             input["Cargo Volume"],
             input["ETA"],
             input["ETD"],
