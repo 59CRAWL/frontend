@@ -6,8 +6,7 @@ import Layout from '@components/Layout';
 
 import { useContext } from 'react';
 import { ShipContext } from 'src/context/shipContext';
-import Layout from '@components/Layout';
-import Head from 'next/head';
+
 
 function Chatbot() {
     const [prompt, setPrompt] = useState('');
@@ -36,13 +35,7 @@ function Chatbot() {
     return (
 
         <Layout>
-            <Head>
-                <title>059CRAWL</title>
-                <meta name="description" content="PSA Codesprint 2023" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
 
-            <Layout>
       <Head>
         <title>059CRAWL</title>
         <meta name="description" content="PSA Codesprint 2023" />
@@ -65,7 +58,7 @@ function Chatbot() {
 
 
         </Layout>
-      </Layout>
+
   )
   }
 export default Chatbot;
