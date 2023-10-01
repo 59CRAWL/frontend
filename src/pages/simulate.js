@@ -49,7 +49,7 @@ export default function Simulate() {
 
   function nextShip() {
     if (!message) {
-      console.log('no ships');
+      // console.log('no ships');
       return;
     }
     // console.log(shipsShowing);
@@ -65,10 +65,10 @@ export default function Simulate() {
     }
     counter += 1;
     setShipsShowing(newShipsShowing);
-    console.log(message)
-    console.log(shipsShowing)
-    console.log(removedShips)
-    console.log('updated array')
+    // console.log(message)
+    // console.log(shipsShowing)
+    // console.log(removedShips)
+    // console.log('updated array')
   }
 
   // function previousShip() {
@@ -109,7 +109,7 @@ export default function Simulate() {
               />
               {
                  shipsShowing.map((ship, index) => {
-                    return <RoutingMachine key={ship.id} end={BERTH_LOCATIONS[ship.berth]} ship={ship}/>
+                    return <RoutingMachine key={ship.id} end={BERTH_LOCATIONS[ship.berth-1]} ship={ship}/>
                 })
               }
             </>
