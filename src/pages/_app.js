@@ -1,11 +1,11 @@
 import '@styles/output.scss'
-import ShipContext from 'src/context/shipContext'
+import ShipContextProvider from 'src/context/shipContext'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ShipContext>
-    <Component {...pageProps} />
-  </ShipContext>
+    <ShipContextProvider>
+      <Component {...pageProps} />
+    </ShipContextProvider>
   )
 }
 

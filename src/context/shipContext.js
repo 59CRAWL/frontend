@@ -1,15 +1,15 @@
 import { createContext, useState } from "react";
 
-export const Message_data = createContext();
+export const ShipContext = createContext(null);
 
-function ShipContext({ children }) {
+function ShipContextProvider({ children }) {
     const [message, setMessage] = useState();
   
     return (
-      <Message_data.Provider value={{ message, setMessage }}>
+      <ShipContext.Provider value={{ message, setMessage }}>
         {children}
-      </Message_data.Provider>
+      </ShipContext.Provider>
     );
   }
 
-export default ShipContext
+export default ShipContextProvider
