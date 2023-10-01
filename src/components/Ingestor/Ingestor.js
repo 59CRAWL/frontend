@@ -33,6 +33,8 @@ const ingestor = () => {
           for (var item of temp) {
             shipsArray.push(Ship.builder(item));
           }
+
+          shipsArray.sort((a, b) => a.eta-b.eta);
           
           // Set context for `Ships`
           setMessage(shipsArray);
