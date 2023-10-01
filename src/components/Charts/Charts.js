@@ -1,53 +1,140 @@
 'use client'
-const Charts = () => {
+
+import { Component, useContext } from 'react';
+import { Message_data } from 'src/context/shipContext';
+
+function RecursiveTable({ data }) {
   return (
-    <>
-      <section>
-        <div className="flex m-4 gap-2">
-          <div className="flex-1 px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px">
-            <div className="">
-              <p className="text-gray-900 font-bold">Total returns</p>
-              <p className="py-4 font-bold">$30,000 </p>
-              <p className="text-green-300">+34.5%</p>
-            </div>
-          </div>
-          <div className="flex-1 px-2 justify-center w-16 bg-gray-700 shadow rounded max-h-300px">
-            <div className="">
-              <p className="text-gray-900 font-bold">Total sales</p>
-              <p className="py-4 font-bold">$30,000 </p>
-              <p className="text-green-300">+34.5%</p>
-            </div>
-          </div>
-          <div className="flex-1 px-2 justify-center w-16  bg-gray-700 shadow rounded max-h-300px">
-            <div className="">
-              <p className="text-gray-900 font-bold">Total subscriptions</p>
-              <p className="py-4 font-bold">$30,000 </p>
-              <p className="text-green-300">+34.5%</p>
-            </div>
-          </div>
-          <div className="flex-1 px-2 justify-center w-16  bg-gray-700 shadow rounded h-300px">
-            <div className="">
-              <p className="text-gray-900 font-bold">Total returns</p>
-              <p className="py-4 font-bold ">$30,000 </p>
-              <p className="text-green-300">+34.5%</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="flex my-4 px-4 gap-3">
-        <div className="w-1/2 h-[300px] bg-gray-700 rounded"></div>
-
-        <div className="w-1/2 h-[300px] bg-gray-700 rounded"></div>
-      </section>
-
-      <section className="flex my-4 px-4 gap-2">
-        <div className=" w-1/3 h-[250px] bg-gray-700 rounded"></div>
-        <div className=" w-1/3 h-[250px] bg-gray-700 rounded"></div>
-        <div className=" w-1/3 h-[250px] bg-gray-700 rounded"></div>
-      </section>
-    </>
+    <table className=' w-full m-4 gap-2'>
+      <thead className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
+        <tr>
+          <th>Ship ID</th>
+          <th onClick={() => this.handleSort('berth')}>Berth Number</th>
+          <th>ETA</th>
+          <th>ETD</th>
+          <th>Status</th>
+          <th>Weather (0=dry, 1=wet)</th>
+        </tr>
+      </thead>
+      <tbody className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
+        {data.map((item) => (
+          <tr key={item}>
+            <td className='center font-bold'>{item.id}</td>
+            <td className='center font-bold'>{item.berth}</td>
+            <td className='center font-bold'>{item.eta}</td>
+            <td className='center font-bold'>{item.etd}</td>
+            <td className='center font-bold'>{item.predictedDelay}</td>
+            <td className='center font-bold'>{item.weather}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
+}
+
+// class RecursiveSortableTable extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       data: props.data,
+//       sortColumn: null,
+//       sortOrder: 'asc', // 'asc' or 'desc'
+//     };
+//   }
+
+//   handleSort = (column) => {
+//     let sortOrder = 'asc';
+//     if (column === this.state.sortColumn && this.state.sortOrder === 'asc') {
+//       sortOrder = 'desc';
+//     }
+
+//     const sortedData = [...this.state.data].sort((a, b) => {
+//       if (a[column] < b[column]) return sortOrder === 'asc' ? -1 : 1;
+//       if (a[column] > b[column]) return sortOrder === 'asc' ? 1 : -1;
+//       return 0;
+//     });
+
+//     this.setState({
+//       data: sortedData,
+//       sortColumn: column,
+//       sortOrder,
+//     });
+//   };
+
+//   renderTable(data) {
+//     return (
+//       <table>
+//         <thead>
+//           <tr>
+//             <th onClick={() => this.handleSort('name')}>Name</th>
+//             {/* Add other headers here */}
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {data.map((item) => (
+//             <tr key={item}>
+//               <td>{item.id}</td>
+//               <td>{item.berth}</td>
+
+//             </tr>
+//           ))}
+//         </tbody>
+//       </table>
+//     );
+//   }
+
+//   render() {
+//     const { data, sortColumn, sortOrder } = this.state;
+
+//     return (
+//       <div>
+//         {sortColumn && (
+//           <div>
+//             <p>Sorting by: {sortColumn}</p>
+//             <p>Sort order: {sortOrder}</p>
+//           </div>
+//         )}
+//         {data.map((item) =>
+//           item.children && item.children.length > 0 ? (
+//             <div key={item}>
+//               {this.renderTable(item.children)}
+//               <RecursiveSortableTable
+//                 data={item.children}
+//                 sortColumn={sortColumn}
+//                 sortOrder={sortOrder}
+//               />
+//             </div>
+//           ) : null
+//         )}
+//       </div>
+//     );
+//   }
+// }
+
+
+const Charts = () => {
+
+  const { message } = useContext(Message_data);
+  if (message){
+      return (
+      <div>
+        <h1 className='px-4 font-bold'>Ship Overview</h1>
+          <RecursiveTable data={message} />
+      </div>
+    );
+  }
+  
+  else {
+    return (
+      <>
+        <section>
+          <h1>
+            Upload file to see schedules
+          </h1>
+        </section>
+      </>
+    );
+  }
 };
 
 export default Charts;

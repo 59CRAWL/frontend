@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const Message_data = createContext(null);
+export const Message_data = createContext();
 
 function ShipContext({ children }) {
     const [message, setMessage] = useState();
