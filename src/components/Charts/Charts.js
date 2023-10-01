@@ -12,8 +12,8 @@ function RecursiveTable({ data }) {
           <th>Berth Number</th>
           <th>ETA</th>
           <th>ETD</th>
+          <th>PTD</th>
           <th>Status</th>
-          <th>Weather (0=dry, 1=wet)</th>
         </tr>
       </thead>
       <tbody className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
@@ -23,8 +23,8 @@ function RecursiveTable({ data }) {
             <td className='center font-bold'>{item.berth}</td>
             <td className='center font-bold'>{item.eta}</td>
             <td className='center font-bold'>{item.etd}</td>
+            <td className='center font-bold'>{item.ptd}</td>
             <td className='center font-bold'>{item.predictedDelay}</td>
-            <td className='center font-bold'>{item.weather}</td>
           </tr>
         ))}
       </tbody>
