@@ -1,7 +1,7 @@
 'use client'
 
 import { Component, useContext } from 'react';
-import { Message_data } from 'src/context/shipContext';
+import { ShipContext } from 'src/context/shipContext';
 
 function RecursiveTable({ data }) {
   return (
@@ -114,7 +114,7 @@ function RecursiveTable({ data }) {
 
 const Charts = () => {
 
-  const { message } = useContext(Message_data);
+  const { message } = useContext(ShipContext);
   if (message){
       return (
       <div>
@@ -127,8 +127,8 @@ const Charts = () => {
   else {
     return (
       <>
-        <section>
-          <h1>
+        <section className='bg'>
+          <h1 className='rcenter font-bold'>
             Upload file to see schedules
           </h1>
         </section>

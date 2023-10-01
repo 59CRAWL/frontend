@@ -11,7 +11,17 @@ const Header = () => {
       <Container className={styles.headerContainer}>
         <p className={styles.headerTitle}>
           <Link href="/">
-            059Crawl
+            Home
+          </Link>
+        </p>
+        <p className={styles.headerTitle}>
+          <Link href="/simulate">
+            Simulate
+          </Link>
+        </p>
+        <p className={styles.headerTitle}>
+          <Link href="/dashboard">
+            Dashboard
           </Link>
         </p>
         <ul className={styles.headerLinks}>

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Layout from '@components/Layout';
 import Ingestor from '@components/Ingestor';
+import Charts from '@components/Charts';
 
 export default function Home() {
 
@@ -13,7 +14,6 @@ export default function Home() {
       </Head>
 
       <Ingestor />
-      
     </Layout>
   )
 }

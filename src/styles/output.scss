@@ -924,8 +924,16 @@ button[type="submit"] {
 }
 
 .center {
-  width: 100px; 
+  width: 1000px; 
   margin: auto; 
   text-align: center;
   
+}
+
+.rcenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
 }
