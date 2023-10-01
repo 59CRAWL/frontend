@@ -22,6 +22,11 @@ const Header = () => {
             Dashboard
           </Link>
         </p>
+        <p className={styles.headerTitle}>
+          <Link href="/chatbot">
+            Chatbot
+          </Link>
+        </p>
         <ul className={styles.headerLinks}>
           <li>
             <a href="https://github.com/59CRAWL" rel="noreferrer">
