@@ -5,7 +5,7 @@ import { ShipContext } from 'src/context/shipContext';
 
 function RecursiveTable({ data }) {
   return (
-    <table className=' w-full m-4 gap-2'>
+    <table className=' w-full m-4 gap-2 ttext'>
       <thead className='px-2 justify-center w-16 bg-gray-700 rounded h-300px'>
         <tr>
           <th className='py-4'>Ship ID</th>
