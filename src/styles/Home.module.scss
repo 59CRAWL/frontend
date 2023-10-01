@@ -24,3 +24,21 @@
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
     Bitstream Vera Sans Mono, Courier New, monospace;
 }
+
+.layout {
+  position:relative
+}
+
+.next_button { 
+  // position:absolute;
+  // bottom:20px;
+  // left:20px;
+  background-color: rgba(102, 102, 240, 0.613);
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 10px;
+}
+
+.next_button:hover {
+  background-color: rgba(20, 20, 22, 0.424);;
+}

@@ -4,7 +4,7 @@ import Layout from '@components/Layout';
 import Map from '@components/Map';
 
 import styles from '@styles/Home.module.scss';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ShipContext } from 'src/context/shipContext';
 import RoutingMachine from '@components/Routing/RoutingMachine';
 
@@ -36,13 +36,39 @@ const SPAWN_LOCATIONS = [
   [1.259184, 103.747504],
 ]
 
+var counter = 1;
+
 export default function Simulate() {
   const { message } = useContext(ShipContext)
 
+  const [shipsShowing, setShipsShowing] = useState(message? [message[0]]: [])
+  
+
   console.log(message)
 
+  function nextShip() {
+    if (!message) {
+      console.log('no ships');
+      return;
+    }
+    console.log(shipsShowing);
+    var newShipsShowing = [...shipsShowing]
+    const index = newShipsShowing.findIndex((ship) => message[counter].berth == ship.berth)
+    console.log(index)
+    console.log(message[counter].vesselName)
+    if (index == -1) {
+      newShipsShowing.push(message[counter]);
+    } else {
+      newShipsShowing[index] = message[counter]
+    }
+    counter += 1;
+    setShipsShowing(newShipsShowing);
+    
+    console.log('updated array')
+  }
+
   return (
-    <Layout>
+    <Layout className={styles.layout}>
 
       <Head>
         <title>059CRAWL</title>
@@ -64,20 +90,16 @@ export default function Simulate() {
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               />
               {
-                message ? 
-                  message.map((ship, index) => {
-                    if (index >2) return;
-                    return <RoutingMachine key={index} start={SPAWN_LOCATIONS[ship.berth]} end={BERTH_LOCATIONS[ship.berth]} ship={ship}/>
-
-                    
-                }): null
+                 shipsShowing.map((ship, index) => {
+                    return <RoutingMachine key={ship.id} end={BERTH_LOCATIONS[ship.berth]} ship={ship}/>
+                })
               }
             </>
           )
         }
       </Map>
 
-      <button > Next ship</button>
+      <button className={styles.next_button} onClick={nextShip}> Next ship</button>
 
     </Layout>
   )
