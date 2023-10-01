@@ -7,6 +7,7 @@ import Layout from '@components/Layout';
 import { useContext } from 'react';
 import { ShipContext } from 'src/context/shipContext';
 
+
 function Chatbot() {
     const [prompt, setPrompt] = useState('');
     const [botReply, setBotReply] = useState('');
@@ -31,31 +32,31 @@ function Chatbot() {
             setBotReply("Chat API is not working, please configure your replicate API key")
         }
     };
-
     return (
 
         <Layout>
-            <Head>
-                <title>059CRAWL</title>
-                <meta name="description" content="PSA Codesprint 2023" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
 
-            <div>
-                <h1>Welcome to PSA's Chat Bot! Ask any questions regarding the data!</h1>
+      <Head>
+        <title>059CRAWL</title>
+        <meta name="description" content="PSA Codesprint 2023" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className='center rcenter'>
+                <h1 className='cheader'>Welcome to PSA's Chat Bot! Ask any questions regarding the data!</h1>
                 <div>
                     <input
-                        type="text"
+                      className='rounded chatinput'
+          type="text"
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
                     />
-                    <button onClick={handleChat}>Send</button>
+                    <button type='submit' className='ttext' onClick={handleChat}>Send</button>
                 </div>
 
                 <p>{botReply ? botReply : "Hi, please ask me any question regarding the dataset!"}</p>
             </div>
         </Layout>
-    );
-}
 
+  )
+  }
 export default Chatbot;
