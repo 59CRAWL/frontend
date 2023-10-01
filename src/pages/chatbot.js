@@ -13,20 +13,20 @@ function Chatbot() {
 
     const { message } = useContext(ShipContext);
 
-    // var data = message.slice(0, 10)
+    let json;
 
-    // console.log(data)
+    if (message) {
+        json = JSON.stringify(message.slice(0,20))
+    }
 
     const handleChat = async () => {
         try {
             const response = await axios.post('http://127.0.0.1:5000/chat', {
-                json: JSON.stringify(message),
+                json: json,
                 prompt: prompt
             });
 
-            setBotReply(response);
-
-            console.log(botReply)
+            setBotReply(response.data);
         } catch (error) {
             setBotReply("Chat API is not working, please configure your replicate API key")
         }
@@ -52,10 +52,8 @@ function Chatbot() {
                     <button onClick={handleChat}>Send</button>
                 </div>
 
-                {/* <p>{botReply}</p> */}
+                <p>{botReply ? botReply : "Hi, please ask me any question regarding the dataset!"}</p>
             </div>
-
-
         </Layout>
     );
 }
