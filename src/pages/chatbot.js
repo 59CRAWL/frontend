@@ -17,7 +17,7 @@ function Chatbot() {
     let json;
 
     if (message) {
-        json = JSON.stringify(message.slice(0,20))
+        json = JSON.stringify(message.slice(0, 20))
     }
 
     const handleChat = async () => {
@@ -36,17 +36,17 @@ function Chatbot() {
 
         <Layout>
 
-      <Head>
-        <title>059CRAWL</title>
-        <meta name="description" content="PSA Codesprint 2023" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className='center rcenter'>
+            <Head>
+                <title>059CRAWL</title>
+                <meta name="description" content="PSA Codesprint 2023" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <div className='center rcenter'>
                 <h1 className='cheader'>Welcome to PSA's Chat Bot! Ask any questions regarding the data!</h1>
                 <div>
                     <input
-                      className='rounded chatinput'
-          type="text"
+                        className='rounded chatinput'
+                        type="text"
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
                     />
@@ -57,6 +57,6 @@ function Chatbot() {
             </div>
         </Layout>
 
-  )
-  }
+    )
+}
 export default Chatbot;
