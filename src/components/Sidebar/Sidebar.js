@@ -23,22 +23,21 @@ const Sidebar = () => {
       var newFormData = new FormData();
       newFormData.append('file', file)
       // console.log('Selected file:', selectedFile);
-      axios.post("http://127.0.0.1:5000/ingestor", newFormData).then(
+      const headers = {
+        'Content-Type': 'application/json',
+      };
+      axios.post("http://127.0.0.1:5000/ingestor", newFormData, { headers }).then(
         (response) => {
-          
-          var temp = response.data;
-          // console.log(temp);
+          const sanitizedJsonString = response.data.replace(/:\s*NaN/g, ': null');
+          var temp = JSON.parse(sanitizedJsonString);
           var shipsarray = [];
           
           for (var item of temp) {
-            // console.log(item);
-            shipsarray.push(new Ship(item.shipId, item.ETA, item.ETD, item.Berth));
+            shipsarray.push(Ship.builder(item));
           }
-          // console.log(shipsarray);
-          
           
           setMessage(shipsarray);
-          console.log(shipsarray)
+          console.log(shipsarray);
 
           }
         )
@@ -58,7 +57,7 @@ const Sidebar = () => {
             <input
               type="file"
               id="fileInput"
-              accept=".jpg, .jpeg, .png, .pdf" // Specify the allowed file types
+              
               onChange={(e)=> setFile(e.target.files?.[0])}
             />
           </div>
