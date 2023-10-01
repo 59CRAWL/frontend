@@ -1,7 +1,7 @@
 @echo off
 
 REM Step 1: npm install
-npm i
+call npm i --force
 
 REM Step 2: Run your Next application
-start cmd /k npm run dev
+call cmd /k npm run dev
