@@ -53,7 +53,7 @@ function Chatbot() {
                     <button type='submit' className='ttext' onClick={handleChat}>Send</button>
                 </div>
 
-                <p>{botReply ? botReply : "Hi, please ask me any question regarding the dataset!"}</p>
+                <p className='cbottext'>{botReply ? botReply : "Hi, please ask me any question regarding the dataset!"}</p>
             </div>
         </Layout>
 
