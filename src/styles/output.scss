@@ -654,7 +654,7 @@ video {
 }
 
 .w-full {
-  width: 100%;
+  width: 97%;
 }
 
 .flex-1 {
@@ -862,6 +862,10 @@ h2 {
   margin-bottom: 20px;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
 input[type="file"] {
   width: 100%;
   padding: 10px;
@@ -913,4 +917,28 @@ button[type="submit"] {
 
 .leaflet-routing-alternatives-container {
   display: none;
+}
+
+.tabl {
+  flex-direction: column;
+}
+
+.center {
+  width: 1000px; 
+  margin: auto; 
+  text-align: center;
+  
+}
+
+.rcenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+}
+
+.ttext {
+  font-size: 20px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
