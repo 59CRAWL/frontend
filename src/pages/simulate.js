@@ -4,9 +4,9 @@ import Layout from '@components/Layout';
 import Map from '@components/Map';
 
 import styles from '@styles/Home.module.scss';
-import RoutingMachine from '../components/Routing';
 import { useContext } from 'react';
 import { ShipContext } from 'src/context/shipContext';
+import RoutingMachine from '@components/Routing/RoutingMachine';
 
 const DEFAULT_CENTER = [1.262822, 103.786229]
 
@@ -38,9 +38,9 @@ export default function Simulate() {
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               />
               {
-                message.map((num, index) => {
+                message? message.map((num, index) => {
                   return <RoutingMachine />
-                })
+                }): null
               }
             </>
           )

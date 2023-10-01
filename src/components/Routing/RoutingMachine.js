@@ -4,4 +4,10 @@ const DynamicRoute = dynamic(() => import('./DynamicRouting'), {
   ssr: false,
 });
 
-export default DynamicRoute
+const RoutingMachine = (props) => {
+  return (
+    <DynamicRoute {...props}/>
+  )
+}
+
+export default RoutingMachine;
