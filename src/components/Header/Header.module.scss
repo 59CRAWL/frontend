@@ -21,11 +21,19 @@
 .headerTitle {
   font-size: 1.6em;
   font-weight: bold;
+  padding: 0.5em;
+  border-radius: 0.5em;
   margin: 0;
 }
 
+.headerTitle:hover {
+  background-color: rgb(33,33,33);
+  font-size: 1.6em;
+  font-weight: bold;
+  margin: 0;
+}
 .headerLogo {
-  height: 1.6em;
+  height: 4em;
 }
 
 .headerLinks {
@@ -52,7 +60,7 @@
     justify-content: center;
 
     svg {
-      margin-right: 0.4em;
+      margin-right: 1em;
     }
   }
 }

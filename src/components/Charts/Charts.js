@@ -6,10 +6,10 @@ import { ShipContext } from 'src/context/shipContext';
 function RecursiveTable({ data }) {
   return (
     <table className=' w-full m-4 gap-2'>
-      <thead className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
+      <thead className='px-2 justify-center w-16 bg-gray-700 rounded h-300px'>
         <tr>
-          <th>Ship ID</th>
-          <th onClick={() => this.handleSort('berth')}>Berth Number</th>
+          <th className='py-4'>Ship ID</th>
+          <th>Berth Number</th>
           <th>ETA</th>
           <th>ETD</th>
           <th>Status</th>
