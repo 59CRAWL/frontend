@@ -42,7 +42,7 @@ var removedShips = []
 
 export default function Simulate() {
   const { message } = useContext(ShipContext)
-
+  
   const [shipsShowing, setShipsShowing] = useState(message? [message[0]]: [])
 
   
@@ -52,10 +52,13 @@ export default function Simulate() {
       // console.log('no ships');
       return;
     }
+    if (counter >= message.length) {
+      return;
+    }
     // console.log(shipsShowing);
     var newShipsShowing = [...shipsShowing]
     const index = newShipsShowing.findIndex((ship) => message[counter].berth == ship.berth)
-    // console.log(index)
+        // console.log(index)
     // console.log(message[counter].vesselName)
     if (index == -1) {
       newShipsShowing.push(message[counter]);
