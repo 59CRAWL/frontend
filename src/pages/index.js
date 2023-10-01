@@ -81,8 +81,8 @@ export default function Home() {
 
       <center>
         <div>
-          <h2>Welcome to our App!</h2>
-          <p> This app takes in your shipping schedules, and predicts potential delays, suggest resources allocation, and simulate shipping routes!</p>
+          <h2 className='py-2 font-bold'>Welcome to our App!</h2>
+          <p className='itext'> This app takes in your shipping schedules, and predicts potential delays, suggest resources allocation, and simulate shipping routes!</p>
           <h2>Upload your CSV here:</h2>
           <form onSubmit={handleSubmit}>
             <div>
@@ -96,13 +96,11 @@ export default function Home() {
 
                 onChange={(e) => setFile(e.target.files?.[0])}
               />
-            </div>
-            <div>
               <button type="submit">Submit</button>
             </div>
           </form>
 
-          <h2> Don't have a CSV file?</h2>
+          <h2 className='py-4'> Don't have a CSV file?</h2>
           <button type="submit" onClick={handleClick}>Click to use our dummy data!</button>
         </div>
       </center>
