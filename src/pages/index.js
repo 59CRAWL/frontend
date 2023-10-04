@@ -51,7 +51,7 @@ export default function Home() {
     const headers = {
       'Content-Type': 'application/json',
     };
-    axios.post("http://127.0.0.1:5000/ingestor",{ headers }).then((response) => {
+    axios.post("http://127.0.0.1:5000/ingestor", { headers }).then((response) => {
       // Convert response string to a JSON object
       const sanitizedJsonString = response.data.replace(/:\s*NaN/g, ': null');
       var temp = JSON.parse(sanitizedJsonString);
@@ -81,13 +81,12 @@ export default function Home() {
 
       <center>
         <div className='icontainer'>
-          <h2 className='py-2 font-bold'>Welcome to our Web application!</h2>
-          <p className='itext'> This app takes in your shipping schedules, predicts potential delays, suggests resource allocation, and simulate shipping routes!</p>
-          <h2>Upload your CSV here:</h2>
-          <form onSubmit={handleSubmit}>
-            <div>
+          <h2 className='iheader py-2 font-bold '>Welcome to our Web Application!</h2>
+          <p className='itext '> This app takes in your <span className='font-bold'>shipping schedules</span>, predicts <span className='font-bold'>potential delays</span>, suggests <span className='font-bold'>resource allocation</span>, and <span className='font-bold'>simulate shipping routes!</span></p>
+          <div className='outline'>
+            <h2>Upload your CSV here:</h2>
+            <form onSubmit={handleSubmit}>
               <label htmlFor="fileInput"></label>
-
               <input
                 type="file"
                 id="fileInput"
@@ -97,12 +96,12 @@ export default function Home() {
                 onChange={(e) => setFile(e.target.files?.[0])}
               />
               <button type="submit">Submit</button>
-            </div>
-          </form>
-
-          <h2 className='py-4'> Don't have a CSV file?</h2>
-          <button type="submit" onClick={handleClick}>Click to use our dummy data!</button>
+            </form>
+            <h2 className='py-6'> Don't have a CSV file?</h2>
+            <button type="submit" onClick={handleClick}>Click to use our dummy data!</button>
+          </div>
         </div>
+
       </center>
 
     </Layout>

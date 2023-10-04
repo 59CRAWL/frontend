@@ -5,30 +5,32 @@ import { ShipContext } from 'src/context/shipContext';
 
 function RecursiveTable({ data }) {
   return (
-    <table className=' w-full m-4 gap-2 ttext'>
-      <thead className='px-2 justify-center w-16 bg-gray-700 rounded h-300px'>
-        <tr>
-          <th className='py-4'>Ship ID</th>
-          <th>Berth Number</th>
-          <th>ETA</th>
-          <th>ETD</th>
-          <th>PTD</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
-        {data.map((item) => (
-          <tr key={item}>
-            <td className='center font-bold'>{item.id}</td>
-            <td className='center font-bold'>{item.berth}</td>
-            <td className='center font-bold'>{item.eta}</td>
-            <td className='center font-bold'>{item.etd}</td>
-            <td className='center font-bold'>{item.ptd}</td>
-            <td className='center font-bold'>{item.predictedDelay}</td>
+    <div>
+      <table className=' w-full m-4 gap-2 ttext'>
+        <thead className='px-2 justify-center w-16 bg-gray-700 rounded h-300px'>
+          <tr>
+            <th className='py-4'>Ship ID</th>
+            <th>Berth Number</th>
+            <th>ETA</th>
+            <th>ETD</th>
+            <th>PTD</th>
+            <th>Status</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
+          {data.map((item) => (
+            <tr key={item}>
+              <td className='center font-bold'>{item.id}</td>
+              <td className='center font-bold'>{item.berth}</td>
+              <td className='center font-bold'>{item.eta}</td>
+              <td className='center font-bold'>{item.etd}</td>
+              <td className='center font-bold'>{item.ptd}</td>
+              <td className='center font-bold'>{item.predictedDelay}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
@@ -115,21 +117,21 @@ function RecursiveTable({ data }) {
 const Charts = () => {
 
   const { message } = useContext(ShipContext);
-  if (message){
-      return (
-      <div>
+  if (message) {
+    return (
+      <center className='icontainer'>
         <h1 className='px-4 font-bold'>Ship Overview</h1>
-          <RecursiveTable data={message} />
-      </div>
+        <RecursiveTable data={message} />
+      </center>
     );
   }
-  
+
   else {
     return (
       <>
-        <center className='bg icontainer'>
+        <center className='bg ycenter'>
           <h1 className=' font-bold'>
-            Upload file to see schedules.
+            Please upload a file to continue.
           </h1>
         </center>
       </>
