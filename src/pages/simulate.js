@@ -40,8 +40,6 @@ const SPAWN_LOCATIONS = [
 
 var counter = 1;
 
-var removedShips = []
-
 export default function Simulate() {
   const { message } = useContext(ShipContext);
   
@@ -59,27 +57,23 @@ export default function Simulate() {
     if (counter >= message.length) {
       return;
     }
-    // console.log(shipsShowing);
-    var newShipsArray = [...shipsArray]
-    console.log(counter)
-    console.log(message)
-    console.log(shipsArray)
-    const index = newShipsArray.findIndex((ship) => message[counter].berth == ship.berth)
-    console.log(index)
-    // console.log(message[counter].vesselName)
-    if (index == -1) {
-      newShipsArray.push(message[counter]);
+
+    const newShip = message[counter]
+    // console.log(newShip)
+    // console.log(shipsArray)
+    const exisitngShipIndex = shipsArray.findIndex((ship) => ship.berth === newShip.berth)
+    // console.log(exisitngShipIndex);
+    if (exisitngShipIndex === -1) {
+      setShipsArray((prevShipsArray) => [...prevShipsArray, newShip])
     } else {
-      console.log('remove')
-      removedShips.push({index: index, ship: newShipsArray[index]})
-      newShipsArray[index] = message[counter]
+      setShipsArray((prevShipsArray) => {
+        const updatedShipsArray = [...prevShipsArray];
+        updatedShipsArray[exisitngShipIndex] = newShip;
+        return updatedShipsArray;
+      })
     }
+    // console.log(shipsArray)
     counter += 1;
-    setShipsArray(newShipsArray);
-    // console.log(message)
-    console.log(newShipsArray)
-    // console.log(removedShips)
-    // console.log('updated array')
   }
   
   function playShips() {
