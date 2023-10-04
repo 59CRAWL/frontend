@@ -941,7 +941,7 @@ button[type="submit"] {
 }
 
 .icontainer {
-  padding: 5em 2em;
+  padding: 0em 2em;
 }
 
 .ycenter {
@@ -953,6 +953,7 @@ button[type="submit"] {
 
 .iheader {
   font-size: 4em;
+  padding-top: 1em;
   padding-bottom:1em;
 }
 
@@ -965,4 +966,14 @@ button[type="submit"] {
 .py-6 {
   padding-top: 0.8em;
   padding-bottom: 0.2em;
+}
+
+.sheader {
+  font-size: 2em;
+  font-weight: bold;
+  font-style: italic;
+  padding-top: 1em;
+  background: -webkit-radial-gradient(rgb(56, 1, 71), rgb(224, 231, 11));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

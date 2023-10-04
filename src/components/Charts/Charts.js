@@ -120,7 +120,7 @@ const Charts = () => {
   if (message) {
     return (
       <center className='icontainer'>
-        <h1 className='px-4 font-bold'>Ship Overview</h1>
+        <h1 className='sheader font-bold'>Ship Overview</h1>
         <RecursiveTable data={message} />
       </center>
     );

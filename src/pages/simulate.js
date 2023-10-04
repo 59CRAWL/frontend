@@ -42,8 +42,8 @@ var counter = 1;
 
 export default function Simulate() {
   const { message } = useContext(ShipContext);
-  
-  const [shipsArray, setShipsArray] = useState(message? [message[0]]: []);
+
+  const [shipsArray, setShipsArray] = useState(message ? [message[0]] : []);
 
   // var shipsPlaying = false;
 
@@ -75,18 +75,18 @@ export default function Simulate() {
     // console.log(shipsArray)
     counter += 1;
   }
-  
+
   function playShips() {
-    if (message) 
+    if (message)
       setShipsPlaying((prevIsUpdating) => !prevIsUpdating);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     let intervalId;
 
     if (shipsPlaying) {
       nextShip()
-      intervalId = setInterval(()=>{
+      intervalId = setInterval(() => {
         nextShip();
       }, 2000)
     } else {
@@ -98,49 +98,74 @@ export default function Simulate() {
     }
   }, [shipsPlaying])
 
-  return (
-    <Layout className={styles.layout}>
+  if (message) {
+    return (
+      <Layout className={styles.layout}>
 
-      <Head>
-        <title>059CRAWL</title>
-        <meta name="description" content="PSA Codesprint 2023" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+        <Head>
+          <title>059CRAWL</title>
+          <meta name="description" content="PSA Codesprint 2023" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      {/* TileLayer is the background of the map itself */}
-      <Map className={styles.homeMap} width="500" height="200" center={DEFAULT_CENTER} zoom={15}>
-        {
-          ({ TileLayer }) => (
-            <>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              />
+        {/* TileLayer is the background of the map itself */}
+        <center>
+          <h1 className='sheader'>
+            PSA Port Map
+          </h1>
+        </center>
+        <Map className={styles.homeMap} width="500" height="500" center={DEFAULT_CENTER} zoom={15}>
+          {
+            ({ TileLayer }) => (
+              <>
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                />
+                {
+                  shipsArray.map((ship, index) => {
+                    return <RoutingMachine key={ship.id} end={BERTH_LOCATIONS[ship.berth - 1]} ship={ship} />
+                  })
+                }
+              </>
+            )
+          }
+        </Map>
+
+        <div className={styles.bottomContainer}>
+          <div className={styles.leftButtons}>
+            {/* <button className={styles.simulateButton} onClick={previousShip}> Previous ship</button> */}
+            <button className={styles.simulateButton} onClick={nextShip}>Next ship</button>
+            <button className={styles.simulateButton} onClick={playShips}>
               {
-                shipsArray.map((ship, index) => {
-                    return <RoutingMachine key={ship.id} end={BERTH_LOCATIONS[ship.berth-1]} ship={ship}/>
-                })
+                shipsPlaying ? <FaPause /> : <FaPlay />
               }
-            </>
-          )
-        }
-      </Map>
-      
-      <div className={styles.bottomContainer}>
-        <div className={styles.leftButtons}>
-          {/* <button className={styles.simulateButton} onClick={previousShip}> Previous ship</button> */}
-          <button className={styles.simulateButton} onClick={nextShip}>Next ship</button>
-          <button className={styles.simulateButton} onClick={playShips}>
-            {
-              shipsPlaying? <FaPause/> : <FaPlay/>
-            }
-          </button>
-          <h3>ETA: {message? message[counter-1].eta: null}</h3>
+            </button>
+            <h3>ETA: {message ? message[counter - 1].eta : null}</h3>
+          </div>
         </div>
-      </div>
 
-      
 
-    </Layout>
-  )
+
+      </Layout>
+    )
+  }
+
+  else {
+    return (
+      <Layout className={styles.layout}>
+
+        <Head>
+          <title>059CRAWL</title>
+          <meta name="description" content="PSA Codesprint 2023" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <center className='bg ycenter'>
+          <h1 className=' font-bold'>
+            Please upload a file to continue.
+          </h1>
+        </center>
+      </Layout>
+    );
+  }
 }

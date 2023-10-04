@@ -13,7 +13,7 @@ const DEFAULT_HEIGHT = 600;
 const Map = (props) => {
   const { width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT } = props;
   return (
-    <div style={{ aspectRatio: width / height, padding: '3em'}}>
+    <div style={{ aspectRatio: width / height, paddingRight: '3em',paddingLeft:'3em',paddingTop:'1em'}}>
       <DynamicMap {...props} style={{boxShadow: "0px 0px 3px 7px gray", "border-radius":"3px" }}/>
     </div>
   )
