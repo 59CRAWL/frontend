@@ -7,6 +7,8 @@ import styles from '@styles/Home.module.scss';
 import { useContext, useEffect, useState } from 'react';
 import { ShipContext } from 'src/context/shipContext';
 import RoutingMachine from '@components/Routing/RoutingMachine';
+import { FaPause, FaPlay } from 'react-icons/fa';
+
 
 const DEFAULT_CENTER = [1.262822, 103.786229]
 
@@ -38,14 +40,14 @@ const SPAWN_LOCATIONS = [
 
 var counter = 1;
 
-var removedShips = []
-
 export default function Simulate() {
-  const { message } = useContext(ShipContext)
+  const { message } = useContext(ShipContext);
   
-  const [shipsShowing, setShipsShowing] = useState(message? [message[0]]: [])
+  const [shipsArray, setShipsArray] = useState(message? [message[0]]: []);
 
-  
+  // var shipsPlaying = false;
+
+  const [shipsPlaying, setShipsPlaying] = useState(false);
 
   function nextShip() {
     if (!message) {
@@ -55,38 +57,46 @@ export default function Simulate() {
     if (counter >= message.length) {
       return;
     }
-    // console.log(shipsShowing);
-    var newShipsShowing = [...shipsShowing]
-    const index = newShipsShowing.findIndex((ship) => message[counter].berth == ship.berth)
-        // console.log(index)
-    // console.log(message[counter].vesselName)
-    if (index == -1) {
-      newShipsShowing.push(message[counter]);
+
+    const newShip = message[counter]
+    // console.log(newShip)
+    // console.log(shipsArray)
+    const exisitngShipIndex = shipsArray.findIndex((ship) => ship.berth === newShip.berth)
+    // console.log(exisitngShipIndex);
+    if (exisitngShipIndex === -1) {
+      setShipsArray((prevShipsArray) => [...prevShipsArray, newShip])
     } else {
-      removedShips.push({index: index, ship: newShipsShowing[index]})
-      newShipsShowing[index] = message[counter]
+      setShipsArray((prevShipsArray) => {
+        const updatedShipsArray = [...prevShipsArray];
+        updatedShipsArray[exisitngShipIndex] = newShip;
+        return updatedShipsArray;
+      })
     }
+    // console.log(shipsArray)
     counter += 1;
-    setShipsShowing(newShipsShowing);
-    // console.log(message)
-    // console.log(shipsShowing)
-    // console.log(removedShips)
-    // console.log('updated array')
+  }
+  
+  function playShips() {
+    if (message) 
+      setShipsPlaying((prevIsUpdating) => !prevIsUpdating);
   }
 
-  // function previousShip() {
-  //   if (!message) {
-  //     console.log('no ships');
-  //     return;
-  //   }
-  //   console.log(counter);
-  //   if (removedShips[-1].index)
-  //   if (shipsShowing.length == counter) {
-  //     console.log('remove ship');
-  //   } else {
-  //     console.log('replace with previous ship')
-  //   }
-  // }
+  useEffect(()=>{
+    let intervalId;
+
+    if (shipsPlaying) {
+      nextShip()
+      intervalId = setInterval(()=>{
+        nextShip();
+      }, 2000)
+    } else {
+      clearInterval(intervalId);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+    }
+  }, [shipsPlaying])
 
   return (
     <Layout className={styles.layout}>
@@ -99,10 +109,6 @@ export default function Simulate() {
 
       {/* TileLayer is the background of the map itself */}
       <Map className={styles.homeMap} width="500" height="200" center={DEFAULT_CENTER} zoom={15}>
-        {/* <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              /> */}
         {
           ({ TileLayer }) => (
             <>
@@ -111,7 +117,7 @@ export default function Simulate() {
                 attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
               />
               {
-                 shipsShowing.map((ship, index) => {
+                shipsArray.map((ship, index) => {
                     return <RoutingMachine key={ship.id} end={BERTH_LOCATIONS[ship.berth-1]} ship={ship}/>
                 })
               }
@@ -123,7 +129,12 @@ export default function Simulate() {
       <div className={styles.bottomContainer}>
         <div className={styles.leftButtons}>
           {/* <button className={styles.simulateButton} onClick={previousShip}> Previous ship</button> */}
-          <button className={styles.simulateButton} onClick={nextShip}> Next ship</button>
+          <button className={styles.simulateButton} onClick={nextShip}>Next ship</button>
+          <button className={styles.simulateButton} onClick={playShips}>
+            {
+              shipsPlaying? <FaPause/> : <FaPlay/>
+            }
+          </button>
           <h3>ETA: {message? message[counter-1].eta: null}</h3>
         </div>
       </div>
