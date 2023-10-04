@@ -1,11 +1,16 @@
 .layout {
   display: grid;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'menu main main main'
+    'menu main main main'
+    'footer footer footer footer';
   overflow: hidden;
   min-height: 100vh;
 }
 
 .main {
   padding: 0 0 0em;
-  background: linear-gradient(#ffffff, #362224);
+  grid-area: main;
 }

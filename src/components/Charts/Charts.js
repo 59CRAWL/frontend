@@ -127,11 +127,11 @@ const Charts = () => {
   else {
     return (
       <>
-        <section className='bg'>
-          <h1 className='rcenter font-bold'>
-            Upload file to see schedules
+        <center className='bg icontainer'>
+          <h1 className=' font-bold'>
+            Upload file to see schedules.
           </h1>
-        </section>
+        </center>
       </>
     );
   }

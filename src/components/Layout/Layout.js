@@ -5,6 +5,7 @@ import Footer from '@components/Footer';
 // import Chatbot from '@components/Chatbot';
 
 import styles from './Layout.module.scss';
+import Sidebar from '@components/Sidebar/Sidebar';
 
 const Layout = ({ children, className, ...rest }) => {
   return (
@@ -12,7 +13,7 @@ const Layout = ({ children, className, ...rest }) => {
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Sidebar />
       <main className={styles.main}>{children}</main>
       {/* <Chatbot /> */}
       <Footer />

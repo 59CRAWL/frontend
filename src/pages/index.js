@@ -80,9 +80,9 @@ export default function Home() {
       </Head>
 
       <center>
-        <div>
-          <h2 className='py-2 font-bold'>Welcome to our App!</h2>
-          <p className='itext'> This app takes in your shipping schedules, and predicts potential delays, suggest resources allocation, and simulate shipping routes!</p>
+        <div className='icontainer'>
+          <h2 className='py-2 font-bold'>Welcome to our Web application!</h2>
+          <p className='itext'> This app takes in your shipping schedules, predicts potential delays, suggests resource allocation, and simulate shipping routes!</p>
           <h2>Upload your CSV here:</h2>
           <form onSubmit={handleSubmit}>
             <div>
