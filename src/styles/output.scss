@@ -956,7 +956,7 @@ button[type="submit"] {
   padding-top: 1em;
   padding-bottom:1em;
   color: rgba(46, 46, 46, 0.753);
-  font-style: italic;
+
 }
 
 .outline {
@@ -975,10 +975,9 @@ button[type="submit"] {
 
 .sheader {
   font-size: 2em;
-  font-weight: bold;
-  font-style: italic;
+  font-weight: bolder;
   padding-top: 1em;
-  color: rgba(255, 255, 255, 0.76);
+  color: rgba(46, 46, 46, 0.753);
 
 }
 
@@ -1005,7 +1004,7 @@ button[type="submit"] {
   height: 100%;
   opacity: 0.9;
   background-size: cover;
-  background-image: url('../../public/assets/bg1.png');
+  background-image: url('../../public/assets/bgb.png');
   z-index: -999;
 }
 
@@ -1017,4 +1016,14 @@ button[type="submit"] {
 @font-face {
   font-family: SFMono;
   src: url('../../public/assets/sf-mono-cufonfonts-webfont/SFMonoRegular.woff');
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url('../../public/assets/Montserrat/static/Montserrat-Regular.ttf');
+}
+
+@font-face {
+  font-family: NikoFont;
+  src: url('../../public/assets/nikofont/NikoFont.ttf');
 }
