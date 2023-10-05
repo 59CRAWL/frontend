@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chatbot from "react-chatbot-kit";
 import 'react-chatbot-kit/build/main.css'
 import config from "./ChatbotConfig";
@@ -9,10 +9,26 @@ import { faCommentDots, faRobot, faTimes } from "@fortawesome/free-solid-svg-ico
 
 function ChatbotAI() {
   const [showChatbot, setShowChatbot] = useState(false);
+  // const [chatMessages, setChatMessages] = useState([]);
 
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
   };
+
+  //  // Load chat history from local storage on component mount
+  //  useEffect(() => {
+  //   // Add the initial message to chatMessages
+  //   const initialMessage = config.initialMessages[0];
+  //   if (initialMessage) {
+  //     setChatMessages([initialMessage]);
+  //   }
+  // }, []);
+
+  // // Function to add messages to chat history
+  // const addMessage = (message) => {
+  //   setChatMessages((prevMessages) => [...prevMessages, message]);
+  // };
+
 
   return (
     <div 
@@ -23,9 +39,14 @@ function ChatbotAI() {
         <div className="chatbot-wrapper">
           <Chatbot
             config={config}
-            messageParser={MessageParser}
             actionProvider={ActionProvider}
-          />
+            // messageHistory={chatMessages}
+            messageParser={MessageParser}
+            // actionProvider={(props) => (
+            //   // Pass the addMessage function to ActionProvider
+            //   <ActionProvider {...props} addMessage={addMessage} />
+            // )}
+            />
         </div>
       )}
 
@@ -46,13 +67,18 @@ function ChatbotAI() {
       >
         {showChatbot ? (
           <>
-            <span style={{ marginRight: "5px" }}>Close Chatbot</span>
-            <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes} width={15} />
+            <span style={{ marginRight: "5px" }}> ‎ Close Chatbot</span>
           </>
         ) : (
           <>
+<<<<<<< HEAD
             <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} />
             <span style={{ marginLeft: "5px" }}>Chatbot</span>
+=======
+            <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} width={20} />
+            <span style={{ marginLeft: "5px" }}>‎ Chatbot</span>
+>>>>>>> 6f75ac3 (fix chatbot)
           </>
         )}
       </div>
