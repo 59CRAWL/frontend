@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chatbot from "react-chatbot-kit";
 import 'react-chatbot-kit/build/main.css'
 import config from "./ChatbotConfig";
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentDots, faRobot, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import the desired icons
+import { faCommentDots, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import the desired icons
 
 function ChatbotAI() {
   const [showChatbot, setShowChatbot] = useState(false);
@@ -23,9 +23,9 @@ function ChatbotAI() {
         <div className="chatbot-wrapper">
           <Chatbot
             config={config}
-            messageParser={MessageParser}
             actionProvider={ActionProvider}
-          />
+            messageParser={MessageParser}
+            />
         </div>
       )}
 
@@ -46,13 +46,13 @@ function ChatbotAI() {
       >
         {showChatbot ? (
           <>
-            <span style={{ marginRight: "5px" }}>Close Chatbot</span>
-            <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes} width={15} />
+            <span style={{ marginRight: "5px" }}> ‎ Close Chatbot</span>
           </>
         ) : (
           <>
-            <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} />
-            <span style={{ marginLeft: "5px" }}>Chatbot</span>
+            <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} width={20} />
+            <span style={{ marginLeft: "5px" }}>‎ Chatbot</span>
           </>
         )}
       </div>

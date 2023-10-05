@@ -1,13 +1,28 @@
-// in ActionProvider.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ShipContext } from 'src/context/shipContext';
 import axios from 'axios';
 
 const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const { ships } = useContext(ShipContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleQueries = async (prompt) => {
+    // Check if the message is empty and return early if it is.
+    if (!prompt.trim()) {
+      const emptyMessage = createChatBotMessage("Your message is empty.");
+      setState((prev) => ({
+        ...prev,
+        messages: [...prev.messages, emptyMessage],
+      }));
+      return;
+    }
 
+    if (isLoading) {
+      // If loading is in progress, prevent sending additional messages.
+      return;
+    }
+
+    setIsLoading(true);
     let botMessage;
 
     if (!ships) {
@@ -15,6 +30,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }
     else {
       try {
+        // Set a loading indicator while waiting for the response.
+        botMessage = createChatBotMessage("Loading...");
+        
         const response = await axios.post('http://127.0.0.1:5000/chat', {
           json: ships,
           prompt: prompt
@@ -26,7 +44,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         botMessage = createChatBotMessage(<>{reactElement}</>);
 
       } catch (error) {
-        botMessage = createChatBotMessage("Chat API is not working, please configure your replicate API key.");
+        botMessage = createChatBotMessage("Chat API is not working, please configure your replicate API key.")
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -36,16 +56,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }));
   }
 
-  const handleHello = () => {
-    const botMessage = createChatBotMessage('Hello. Nice to meet you.');
-
-    setState((prev) => ({
-      ...prev,
-      messages: [...prev.messages, botMessage],
-    }));
-  };
-
-  // Put the handleHello function in the actions object to pass to the MessageParser
   return (
     <div>
       {React.Children.map(children, (child) => {
@@ -53,6 +63,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           actions: {
             handleQueries,
           },
+          isLoading,
         });
       })}
     </div>
