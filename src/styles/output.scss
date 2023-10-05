@@ -937,7 +937,7 @@ button[type="submit"] {
 .itext {
   font-size: 2em;
   margin-bottom: 3em;
-  color: rgba(255, 255, 255, 0.76);
+  color:rgba(46, 46, 46, 0.753);
 }
 
 .icontainer {
@@ -955,12 +955,12 @@ button[type="submit"] {
   font-size: 4em;
   padding-top: 1em;
   padding-bottom:1em;
-  color: rgba(255, 255, 255, 0.76);
+  color: rgba(46, 46, 46, 0.753);
   font-style: italic;
 }
 
 .outline {
-  box-shadow: 0px 0px 3px 4px gray;
+
   padding-top: 0.8em;
   padding-bottom: 2em;
   border-radius: 1px;
@@ -983,7 +983,7 @@ button[type="submit"] {
 }
 
 .fontcolor {
-  color: rgba(255, 255, 255, 0.76);
+  color: rgba(46, 46, 46, 0.753);
 }
 
 .bg-gray {
@@ -1005,6 +1005,11 @@ button[type="submit"] {
   height: 100%;
   opacity: 0.9;
   background-size: cover;
-  background-image: url('../../public/assets/bg.png');
+  background-image: url('../../public/assets/bg1.png');
   z-index: -999;
+}
+
+@font-face {
+  font-family: noyhFont;
+  src: url('../../public/assets/NoyhSlim-SemiLight.ttf');
 }
