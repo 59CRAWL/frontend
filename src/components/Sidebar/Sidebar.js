@@ -8,7 +8,7 @@ const Sidebar = () => {
     <menu className={styles.sidebar}>
       <Container className={styles.sidebarContainer}>
         <Link href ="/">
-          <img src='assets/psa.png' className={styles.sidebarLogo}/>
+          <img src='assets/psanobg.png' className={styles.sidebarLogo}/>
         </Link>
         <div>
 
@@ -25,11 +25,6 @@ const Sidebar = () => {
           <Link href="/dashboard" className={styles.sidebarTitle}>
             <img src= 'assets/dashboard.png' className={styles.iconsize}/>
               Dashboard
-          </Link>
-
-          <Link href="/chatbot" className={styles.sidebarTitle}>
-            <img src= 'assets/chatbot.png' className={styles.iconsize}/>
-              Chatbot
           </Link>
 
         </div>
