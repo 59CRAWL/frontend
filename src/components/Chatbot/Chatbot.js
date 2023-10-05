@@ -4,7 +4,8 @@ import 'react-chatbot-kit/build/main.css'
 import config from "./ChatbotConfig";
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
-// import styles from "./Chatbot.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCommentDots, faRobot, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import the desired icons
 
 function ChatbotAI() {
   const [showChatbot, setShowChatbot] = useState(false);
@@ -16,8 +17,7 @@ function ChatbotAI() {
   return (
     <div 
         className="chatbot-container" 
-        style={{position: "fixed", bottom: "100px", right: "50px", zIndex: "1000" }}
-    
+        style={{ position: "fixed", bottom: "100px", right: "50px", zIndex: "1000" }}
     >
       {showChatbot && (
         <div className="chatbot-wrapper">
@@ -32,14 +32,29 @@ function ChatbotAI() {
       <div
         className={`chatbot-toggle-icon ${showChatbot ? "active" : ""}`}
         onClick={toggleChatbot}
-        style={{cursor: "pointer",
-        backgroundColor: "#007bff",
-        color: "#fff",
-        padding: "10px 20px",
-        borderRadius: "50px",
-        transition: "background-color 0.3s ease-in-out",}}
+        style={{
+          cursor: "pointer",
+          backgroundColor: "#007bff",
+          color: "#fff",
+          padding: "10px 20px",
+          borderRadius: "50px",
+          transition: "background-color 0.3s ease-in-out",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        {showChatbot ? "Close Chat" : "Open Chat"}
+        {showChatbot ? (
+          <>
+            <span style={{ marginRight: "5px" }}>Close Chatbot</span>
+            <FontAwesomeIcon icon={faTimes} />
+          </>
+        ) : (
+          <>
+            <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} />
+            <span style={{ marginLeft: "5px" }}>chatbot</span>
+          </>
+        )}
       </div>
     </div>
   );
