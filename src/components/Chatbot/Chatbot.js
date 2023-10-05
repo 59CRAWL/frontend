@@ -72,13 +72,8 @@ function ChatbotAI() {
           </>
         ) : (
           <>
-<<<<<<< HEAD
-            <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} />
-            <span style={{ marginLeft: "5px" }}>Chatbot</span>
-=======
             <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} width={20} />
             <span style={{ marginLeft: "5px" }}>‎ Chatbot</span>
->>>>>>> 6f75ac3 (fix chatbot)
           </>
         )}
       </div>

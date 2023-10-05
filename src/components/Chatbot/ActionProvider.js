@@ -7,9 +7,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleQueries = async (prompt) => {
-<<<<<<< HEAD
-
-=======
     // Check if the message is empty and return early if it is.
     if (!prompt.trim()) {
       const emptyMessage = createChatBotMessage("Your message is empty.");
@@ -26,7 +23,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }
 
     setIsLoading(true);
->>>>>>> 6f75ac3 (fix chatbot)
     let botMessage;
 
     if (!ships) {
@@ -48,13 +44,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         botMessage = createChatBotMessage(<>{reactElement}</>);
 
       } catch (error) {
-<<<<<<< HEAD
-        botMessage = createChatBotMessage("Chat API is not working, please configure your replicate API key.");
-=======
         botMessage = createChatBotMessage("Chat API is not working, please configure your replicate API key.")
       } finally {
         setIsLoading(false);
->>>>>>> 6f75ac3 (fix chatbot)
       }
     }
 
