@@ -52,7 +52,7 @@ function ChatbotAI() {
         ) : (
           <>
             <FontAwesomeIcon icon={faCommentDots} style={{ transform: "scaleX(-1)" }} />
-            <span style={{ marginLeft: "5px" }}>chatbot</span>
+            <span style={{ marginLeft: "5px" }}>Chatbot</span>
           </>
         )}
       </div>
