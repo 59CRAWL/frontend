@@ -1,48 +1,48 @@
-import { useContext, useState } from "react";
-import { ShipContext } from "src/context/shipContext";
+import React, { useState } from "react";
+import Chatbot from "react-chatbot-kit";
+import 'react-chatbot-kit/build/main.css'
+import config from "./ChatbotConfig";
+import MessageParser from "./MessageParser";
+import ActionProvider from "./ActionProvider";
+// import styles from "./Chatbot.module.scss";
 
-import styles from './Chatbot.module.scss';
+function ChatbotAI() {
+  const [showChatbot, setShowChatbot] = useState(false);
 
-const ChatbotLayout = () => {
-  const [prompt, setPrompt] = useState('');
-    const [botReply, setBotReply] = useState('');
+  const toggleChatbot = () => {
+    setShowChatbot(!showChatbot);
+  };
 
-    const { message } = useContext(ShipContext);
-
-    let json;
-
-    if (message) {
-        json = JSON.stringify(message.slice(0, 20))
-    }
-
-    const handleChat = async () => {
-        try {
-            const response = await axios.post('http://127.0.0.1:5000/chat', {
-                json: json,
-                prompt: prompt
-            });
-
-            setBotReply(response.data);
-        } catch (error) {
-            setBotReply("Chat API is not working, please configure your replicate API key")
-        }
-    };
   return (
-    <div className={styles.chatbotcontainer}>
-      <h1 className={styles.cheader}>Welcome to PSA's Chat Bot! Ask any questions regarding the data!</h1>
-      <div>
-        <input
-          className={styles.chatinput}
-          type="text"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-        />
-        <button type='submit' className='ttext' onClick={handleChat}>Send</button>
-      </div>
+    <div 
+        className="chatbot-container" 
+        style={{position: "fixed", bottom: "100px", right: "50px", zIndex: "1000" }}
+    
+    >
+      {showChatbot && (
+        <div className="chatbot-wrapper">
+          <Chatbot
+            config={config}
+            messageParser={MessageParser}
+            actionProvider={ActionProvider}
+          />
+        </div>
+      )}
 
-      <p className='cbottext'>{botReply ? botReply : "Hi, please ask me any question regarding the dataset!"}</p>
+      <div
+        className={`chatbot-toggle-icon ${showChatbot ? "active" : ""}`}
+        onClick={toggleChatbot}
+        style={{cursor: "pointer",
+        backgroundColor: "#007bff",
+        color: "#fff",
+        padding: "10px 20px",
+        borderRadius: "50px",
+        transition: "background-color 0.3s ease-in-out",}}
+      >
+        {showChatbot ? "Close Chat" : "Open Chat"}
+      </div>
     </div>
   );
-};
+}
 
-export default ChatbotLayout;
+export default ChatbotAI;
