@@ -9,7 +9,7 @@ import Sidebar from '@components/Sidebar/Sidebar';
 
 const Layout = ({ children, className, ...rest }) => {
   return (
-    <>
+    <p className='background'>
     <div className={styles.layout}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
@@ -19,7 +19,7 @@ const Layout = ({ children, className, ...rest }) => {
       <Chatbot />
       <Footer />
     </div>
-    </>
+    </p>
   );
 };
 

@@ -81,10 +81,10 @@ export default function Home() {
 
       <center>
         <div className='icontainer'>
-          <h2 className='iheader py-2 font-bold '>Welcome to our Web Application!</h2>
-          <p className='itext '> This app takes in your <span className='font-bold'>shipping schedules</span>, predicts <span className='font-bold'>potential delays</span>, suggests <span className='font-bold'>resource allocation</span>, and <span className='font-bold'>simulate shipping routes!</span></p>
+          <h2 className='iheader py-2 font-bold'>Welcome to our Web Application!</h2>
+          <p className='itext'> This app takes in your <span className='font-bold'>shipping schedules</span>, predicts <span className='font-bold'>potential delays</span>, suggests <span className='font-bold'>resource allocation</span>, and <span className='font-bold'>simulate shipping routes!</span></p>
           <div className='outline'>
-            <h2>Upload your CSV here:</h2>
+            <h2 className='fontcolor'>Upload your CSV here:</h2>
             <form onSubmit={handleSubmit}>
               <label htmlFor="fileInput"></label>
               <input
@@ -97,7 +97,7 @@ export default function Home() {
               />
               <button type="submit">Submit</button>
             </form>
-            <h2 className='py-6'> Don't have a CSV file?</h2>
+            <h2 className='py-6 fontcolor'> Don't have a CSV file?</h2>
             <button type="submit" onClick={handleClick}>Click to use our dummy data!</button>
           </div>
         </div>

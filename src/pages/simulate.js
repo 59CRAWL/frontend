@@ -161,7 +161,7 @@ export default function Simulate() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <center className='bg ycenter'>
-          <h1 className=' font-bold'>
+          <h1 className='fontcolor font-bold'>
             Please upload a file to continue.
           </h1>
         </center>

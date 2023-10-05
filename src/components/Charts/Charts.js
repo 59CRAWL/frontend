@@ -7,7 +7,7 @@ function RecursiveTable({ data }) {
   return (
     <div>
       <table className=' w-full m-4 gap-2 ttext'>
-        <thead className='px-2 justify-center w-16 bg-gray-700 rounded h-300px'>
+        <thead className='px-2 justify-center w-16 bg-gray rounded h-300px'>
           <tr>
             <th className='py-4'>Ship ID</th>
             <th>Berth Number</th>
@@ -17,7 +17,7 @@ function RecursiveTable({ data }) {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody className='px-2 justify-center w-16 bg-gray-700 shadow rounded h-300px'>
+        <tbody className='px-2 justify-center w-16 bg-gray shadow rounded h-300px' >
           {data.map((item) => (
             <tr key={item}>
               <td className='center font-bold'>{item.id}</td>
@@ -130,7 +130,7 @@ const Charts = () => {
     return (
       <>
         <center className='bg ycenter'>
-          <h1 className=' font-bold'>
+          <h1 className='fontcolor font-bold'>
             Please upload a file to continue.
           </h1>
         </center>
