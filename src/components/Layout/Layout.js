@@ -9,17 +9,17 @@ import Sidebar from '@components/Sidebar/Sidebar';
 
 const Layout = ({ children, className, ...rest }) => {
   return (
-    <p className='background'>
-    <div className={styles.layout}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Sidebar />
-      <main className={styles.main}>{children}</main>
-      <Chatbot />
-      <Footer />
+    <div className='background'>
+      <div className={styles.layout}>
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Sidebar />
+        <main className={styles.main}>{children}</main>
+        <Chatbot />
+        <Footer />
+      </div>
     </div>
-    </p>
   );
 };
 
