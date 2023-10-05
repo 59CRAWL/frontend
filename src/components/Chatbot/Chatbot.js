@@ -5,30 +5,14 @@ import config from "./ChatbotConfig";
 import MessageParser from "./MessageParser";
 import ActionProvider from "./ActionProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCommentDots, faRobot, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import the desired icons
+import { faCommentDots, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import the desired icons
 
 function ChatbotAI() {
   const [showChatbot, setShowChatbot] = useState(false);
-  // const [chatMessages, setChatMessages] = useState([]);
 
   const toggleChatbot = () => {
     setShowChatbot(!showChatbot);
   };
-
-  //  // Load chat history from local storage on component mount
-  //  useEffect(() => {
-  //   // Add the initial message to chatMessages
-  //   const initialMessage = config.initialMessages[0];
-  //   if (initialMessage) {
-  //     setChatMessages([initialMessage]);
-  //   }
-  // }, []);
-
-  // // Function to add messages to chat history
-  // const addMessage = (message) => {
-  //   setChatMessages((prevMessages) => [...prevMessages, message]);
-  // };
-
 
   return (
     <div 
@@ -40,12 +24,7 @@ function ChatbotAI() {
           <Chatbot
             config={config}
             actionProvider={ActionProvider}
-            // messageHistory={chatMessages}
             messageParser={MessageParser}
-            // actionProvider={(props) => (
-            //   // Pass the addMessage function to ActionProvider
-            //   <ActionProvider {...props} addMessage={addMessage} />
-            // )}
             />
         </div>
       )}
