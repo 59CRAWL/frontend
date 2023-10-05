@@ -3,10 +3,10 @@ import { createContext, useState } from "react";
 export const ShipContext = createContext(null);
 
 function ShipContextProvider({ children }) {
-    const [message, setMessage] = useState();
+    const [ships, setShips] = useState();
   
     return (
-      <ShipContext.Provider value={{ message, setMessage }}>
+      <ShipContext.Provider value={{ ships, setShips }}>
         {children}
       </ShipContext.Provider>
     );

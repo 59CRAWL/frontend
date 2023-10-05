@@ -116,12 +116,12 @@ function RecursiveTable({ data }) {
 
 const Charts = () => {
 
-  const { message } = useContext(ShipContext);
-  if (message) {
+  const { ships } = useContext(ShipContext);
+  if (ships) {
     return (
       <center className='icontainer'>
         <h1 className='sheader font-bold'>Ship Overview</h1>
-        <RecursiveTable data={message} />
+        <RecursiveTable data={ships} />
       </center>
     );
   }

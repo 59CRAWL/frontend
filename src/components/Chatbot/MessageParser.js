@@ -1,13 +1,21 @@
-// MessageParser starter code
-class MessageParser {
-    constructor(actionProvider, state) {
-      this.actionProvider = actionProvider;
-      this.state = state;
-    }
-  
-    parse(message) {
-      console.log(message)
-    }
-  }
-  
-  export default MessageParser;
+// in MessageParser.js
+import React from 'react';
+
+const MessageParser = ({ children, actions }) => {
+  const parse = async(message) => {
+    await actions.handleQueries(message);
+  };
+
+  return (
+    <div>
+      {React.Children.map(children, (child) => {
+        return React.cloneElement(child, {
+          parse: parse,
+          actions,
+        });
+      })}
+    </div>
+  );
+};
+
+export default MessageParser;

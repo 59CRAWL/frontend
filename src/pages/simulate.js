@@ -41,24 +41,24 @@ const SPAWN_LOCATIONS = [
 var counter = 1;
 
 export default function Simulate() {
-  const { message } = useContext(ShipContext);
+  const { ships } = useContext(ShipContext);
 
-  const [shipsArray, setShipsArray] = useState(message ? [message[0]] : []);
+  const [shipsArray, setShipsArray] = useState(ships ? [ships[0]] : []);
 
   // var shipsPlaying = false;
 
   const [shipsPlaying, setShipsPlaying] = useState(false);
 
   function nextShip() {
-    if (!message) {
+    if (!ships) {
       // console.log('no ships');
       return;
     }
-    if (counter >= message.length) {
+    if (counter >= ships.length) {
       return;
     }
 
-    const newShip = message[counter]
+    const newShip = ships[counter]
     // console.log(newShip)
     // console.log(shipsArray)
     const exisitngShipIndex = shipsArray.findIndex((ship) => ship.berth === newShip.berth)
@@ -77,7 +77,7 @@ export default function Simulate() {
   }
 
   function playShips() {
-    if (message)
+    if (ships)
       setShipsPlaying((prevIsUpdating) => !prevIsUpdating);
   }
 
@@ -98,7 +98,7 @@ export default function Simulate() {
     }
   }, [shipsPlaying])
 
-  if (message) {
+  if (ships) {
     return (
       <Layout className={styles.layout}>
 
@@ -141,12 +141,9 @@ export default function Simulate() {
                 shipsPlaying ? <FaPause /> : <FaPlay />
               }
             </button>
-            <h3>ETA: {message ? message[counter - 1].eta : null}</h3>
+            <h3>ETA: {ships ? ships[counter - 1].eta : null}</h3>
           </div>
         </div>
-
-
-
       </Layout>
     )
   }

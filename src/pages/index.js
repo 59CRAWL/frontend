@@ -11,7 +11,7 @@ import { ShipContext } from 'src/context/shipContext';
 export default function Home() {
   const router = useRouter();
 
-  const { message, setMessage } = useContext(ShipContext);
+  const { ships, setShips } = useContext(ShipContext);
   const [file, setFile] = useState()
 
   function handleSubmit(e) {
@@ -37,7 +37,7 @@ export default function Home() {
         }
 
         // Set context for `Ships`
-        setMessage(shipsArray);
+        setShips(shipsArray);
       }
       ).finally(() => {
         router.push('/simulate')
@@ -63,7 +63,7 @@ export default function Home() {
       }
 
       // Set context for `Ships`
-      setMessage(shipsArray);
+      setShips(shipsArray);
     }
     ).finally(() => {
       router.push('/simulate')

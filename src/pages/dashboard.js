@@ -5,7 +5,7 @@ import { useContext } from "react"
 import { ShipContext } from "src/context/shipContext"
 
 export default function Dashboard() {
-    const { message } = useContext(ShipContext)
+    const { ships } = useContext(ShipContext)
     return (
       <Layout>
         <Head>
