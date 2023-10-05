@@ -38,54 +38,59 @@ const SPAWN_LOCATIONS = [
   [1.259184, 103.747504],
 ]
 
-var counter = 1;
-
 export default function Simulate() {
   const { ships } = useContext(ShipContext);
 
+  // An array of what berth belongs in which berth
+  // This will be at MOST 10
   const [shipsArray, setShipsArray] = useState(ships ? [ships[0]] : []);
-
-  // var shipsPlaying = false;
+  const [counter, setCounter] = useState(1);
 
   const [shipsPlaying, setShipsPlaying] = useState(false);
 
   function nextShip() {
+    // Verify if ships have not run out or exists
     if (!ships) {
-      // console.log('no ships');
       return;
     }
     if (counter >= ships.length) {
       return;
     }
 
+    // Get the next ship
     const newShip = ships[counter]
-    // console.log(newShip)
-    // console.log(shipsArray)
-    const exisitngShipIndex = shipsArray.findIndex((ship) => ship.berth === newShip.berth)
-    // console.log(exisitngShipIndex);
-    if (exisitngShipIndex === -1) {
-      setShipsArray((prevShipsArray) => [...prevShipsArray, newShip])
+
+    // Get the existing ship at the berth
+    const existingShipIndex = shipsArray.findIndex((ship) => ship.berth === newShip.berth)
+
+    // If there is no existing ship, add the new ship to the array
+    if (existingShipIndex === -1) {
+      setShipsArray([...shipsArray, newShip])
     } else {
-      setShipsArray((prevShipsArray) => {
-        const updatedShipsArray = [...prevShipsArray];
-        updatedShipsArray[exisitngShipIndex] = newShip;
-        return updatedShipsArray;
-      })
+      const updatedShipsArray = [...shipsArray];
+      updatedShipsArray[existingShipIndex] = newShip;
+      setShipsArray(updatedShipsArray)
     }
-    // console.log(shipsArray)
-    counter += 1;
+
+    setCounter(counter + 1);
   }
 
+  // Set that the play button is going
   function playShips() {
     if (ships)
       setShipsPlaying((prevIsUpdating) => !prevIsUpdating);
   }
 
   useEffect(() => {
+    if (shipsPlaying) {
+      nextShip()
+    }
+  }, [shipsPlaying])
+
+  useEffect(() => {
     let intervalId;
 
     if (shipsPlaying) {
-      nextShip()
       intervalId = setInterval(() => {
         nextShip();
       }, 2000)
@@ -96,7 +101,7 @@ export default function Simulate() {
     return () => {
       clearInterval(intervalId);
     }
-  }, [shipsPlaying])
+  }, [shipsArray])
 
   if (ships) {
     return (
