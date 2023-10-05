@@ -7,7 +7,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
   const { ships } = useContext(ShipContext);
 
   const handleQueries = async (prompt) => {
-    
+
     let botMessage;
 
     if (!ships) {
@@ -19,10 +19,14 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
           json: ships,
           prompt: prompt
         });
-  
-        botMessage = createChatBotMessage(response.data);
+
+        let message = response.data.replace(/\n/g, '<br/>');
+
+        const reactElement = (<div dangerouslySetInnerHTML={{ __html: message }} />);
+        botMessage = createChatBotMessage(<>{reactElement}</>);
+
       } catch (error) {
-        botMessage = createChatBotMessage("Chat API is not working, please configure your replicate API key.")
+        botMessage = createChatBotMessage("Chat API is not working, please configure your replicate API key.");
       }
     }
 
