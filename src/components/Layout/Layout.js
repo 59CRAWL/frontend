@@ -12,7 +12,7 @@ const Layout = ({ children, className, ...rest }) => {
     <div className='background'>
       <div className={styles.layout}>
         <Head>
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/assets/Untitled-1.png" />
         </Head>
         <Sidebar />
         <main className={styles.main}>{children}</main>
